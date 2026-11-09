@@ -1,0 +1,12 @@
+[languages.fr]
+  contentDir = 'content/fr'
+  label = 'Français'
+  weight = 2
+
+[languages.fr.params]
+  firstName = 'Alex'
+  lastName = 'Example'
+  tagline = 'Engineer. Builder. Collaborator.'
+  hero_description = 'Language-switcher test fixture.'
+  hero_location = 'Example City'
+  resume_url = '/fr/#experience'

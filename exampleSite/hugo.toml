@@ -1,0 +1,92 @@
+baseURL = 'https://example.org/'
+locale = 'en-US'
+title = 'Alex Example'
+theme = 'careercanvas'
+themesDir = '../..'
+defaultContentLanguage = 'en'
+enableRobotsTXT = true
+
+[build.buildStats]
+  enable = true
+
+[[build.cachebusters]]
+  source = 'assets/notwatching/hugo_stats\.json'
+  target = 'css'
+
+[[module.mounts]]
+  source = 'assets'
+  target = 'assets'
+
+[[module.mounts]]
+  source = 'hugo_stats.json'
+  target = 'assets/notwatching/hugo_stats.json'
+  disableWatch = true
+
+[security.exec]
+  allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^node$', '^tailwindcss$']
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  name = 'Alex Example'
+  firstName = 'Alex'
+  lastName = 'Example'
+  author = 'Alex Example'
+  profile_image = '/images/profile.svg'
+  fourofour_image = '/images/profile.svg'
+  description = 'An independent CareerCanvas theme example.'
+  email = 'alex@example.org'
+  copyright = 'Alex Example'
+  linkedin_url = 'https://example.org/'
+  github_url = 'https://github.com/felipecordero/careercanvas'
+  resume_url = '/#experience'
+  pexelsapikey = ''
+
+[params.pexels]
+  queries = ['nature']
+
+[[params.color_palettes.palette]]
+  name = 'professional'
+  main_color = '#474A51'
+  second_color = '#E52521'
+  third_color = '#3CB043'
+
+[languages.en]
+  contentDir = 'content/en'
+  label = 'English'
+  weight = 1
+
+[languages.en.params]
+  firstName = 'Alex'
+  lastName = 'Example'
+  tagline = 'Engineer. Builder. Collaborator.'
+  hero_description = 'A fictional portfolio for testing the theme independently.'
+  hero_location = 'Example City'
+  collab_tags = ['Engineering', 'Open Source']
+  resume_url = '/#experience'
+
+[[menus.main]]
+  name = 'About'
+  url = '/#about'
+  weight = 10
+[[menus.main]]
+  name = 'Skills'
+  url = '/#skills'
+  weight = 20
+[[menus.main]]
+  name = 'Experience'
+  url = '/#experience'
+  weight = 30
+[[menus.main]]
+  name = 'Tech Stack'
+  url = '/#technical'
+  weight = 40
+[[menus.main]]
+  name = 'Contact'
+  url = '/#contact'
+  weight = 50
+[[menus.main]]
+  name = 'Docs'
+  pageRef = '/docs'
+  weight = 60

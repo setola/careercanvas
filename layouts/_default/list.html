@@ -17,11 +17,11 @@
           <div class="space-y-3 pr-2 overflow-y-auto flex-1 sidebar-scroll">
             {{ range .Pages.ByWeight }}
             <a href="{{ .RelPermalink }}" class="block group">
-              <article class="bg-bg-secondary dark:bg-bg-tertiary rounded-md p-3 shadow-sm border border-border-primary dark:border-border-primary hover:shadow-lg hover:bg-bg-tertiary dark:hover:bg-bg transition-all duration-200">
+              <article class="bg-bg-secondary dark:bg-bg-tertiary rounded-md p-3 shadow-xs border border-border-primary dark:border-border-primary hover:shadow-lg hover:bg-bg-tertiary dark:hover:bg-bg transition-all duration-200">
                 <!-- First row: Image and text in 2 columns -->
                 <div class="flex gap-3 mb-2">
                   <!-- Image on the left -->
-                  <div class="w-16 flex-shrink-0">
+                  <div class="w-16 shrink-0">
                     {{ if .Params.featured_image }}
                     <div class="relative overflow-hidden">
                       <img 

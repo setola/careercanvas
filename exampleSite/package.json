@@ -1,0 +1,23 @@
+{
+  "name": "careercanvas-example",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "hugo server --bind 0.0.0.0",
+    "build": "hugo --environment production --minify --panicOnWarning --printI18nWarnings",
+    "test": "npm run build && node --test tests/build.test.cjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.5",
+    "@tailwindcss/typography": "0.5.20",
+    "tailwindcss": "4.3.5"
+  },
+  "overrides": {
+    "@tailwindcss/typography": {
+      "postcss-selector-parser": "6.1.6"
+    }
+  }
+}

@@ -1,8 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Nunito+Sans:wght@400;600&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Nunito+Sans:wght@400;600&display=swap';
+@import "tailwindcss" source(none);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Hugo passes CSS on stdin: paths are relative to the consuming site root.
+   Rendered stats also cover theme templates, regardless of themesDir or checkout name. */
+@source "./hugo_stats.json";
+@source "./layouts";
+@source "./content";
+@source "./assets/js";
+
+/* Utility classes used by the contact toast and JavaScript visibility toggles. */
+@source inline("fixed bottom-6 right-6 bg-second dark:bg-second-light text-white px-4 py-2 rounded-sm shadow-lg hidden flex");
+
+@theme {
+  --font-sans: "Nunito Sans", sans-serif;
+  --font-heading: "Montserrat", sans-serif;
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite;
+  --animate-typewriter: typewriter 3s steps(40, end);
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgb(59 130 246 / 30%); }
+    50% { box-shadow: 0 0 30px rgb(59 130 246 / 60%); }
+  }
+
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+}
+
+/* Register runtime palette colors for opacity modifiers without self-references. */
+@theme inline {
+  --color-surface: var(--color-bg);
+  --color-border-primary: var(--color-border);
+}
+
+/* Preserve v3 defaults where the theme relied on them. */
+@layer base {
+  *, ::before, ::after, ::backdrop, ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  button:not(:disabled), [role="button"] {
+    cursor: pointer;
+  }
+}
 
 @layer base {
   body {
@@ -12,7 +69,7 @@
 
 @layer components {
   .font-heading {
-    font-family: 'Montserrat', 'Nunito Sans', sans-serif;
+    font-family: Montserrat, 'Nunito Sans', sans-serif;
   }
 
   /* Dynamic Color Transitions */
@@ -53,11 +110,11 @@
     z-index: 20;
     font-size: 0.75rem;
     line-height: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255 255 255 / 90%);
     text-decoration: none;
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgb(0 0 0 / 35%);
     backdrop-filter: blur(6px);
   }
 
@@ -95,36 +152,39 @@
     background-color: var(--color-bg-tertiary);
     color: var(--color-primary);
   }
+
   .dark .contact-info-icon {
     color: var(--color-primary-light);
   }
+
   .contact-info-icon i {
     font-size: 1.5rem;
   }
+
   .contact-info-icon img,
   .contact-info-icon .contact-info-icon-img {
     width: 1.5rem;
     height: 1.5rem;
   }
+
   .contact-info-icon img {
     object-fit: contain;
     filter: brightness(0);
   }
+
   .dark .contact-info-icon img {
     filter: brightness(0) invert(1);
   }
+
   .contact-info-icon .contact-info-icon-img {
     display: block;
     mask-image: var(--calendly-mask);
-    -webkit-mask-image: var(--calendly-mask);
     mask-size: contain;
-    -webkit-mask-size: contain;
     mask-repeat: no-repeat;
-    -webkit-mask-repeat: no-repeat;
     mask-position: center;
-    -webkit-mask-position: center;
     background-color: var(--color-primary);
   }
+
   .dark .contact-info-icon .contact-info-icon-img {
     background-color: var(--color-primary-light);
   }
@@ -169,11 +229,6 @@
     overflow: hidden;
   }
 
-  /* Ensure company card has proper dark mode background */
-  .dark .company-card {
-    background-color: var(--color-gray-600) !important;
-  }
-
   .company-card::before {
     content: '';
     position: absolute;
@@ -189,11 +244,6 @@
   .contact-card {
     position: relative;
     overflow: hidden;
-  }
-
-  /* Ensure contact card has proper dark mode background */
-  .dark .contact-card {
-    background-color: var(--color-gray-600) !important;
   }
 
   .contact-card::before {
@@ -242,6 +292,7 @@
   }
 
   /* Navigation */
+
   /* Custom underline effect using semantic colors */
   .nav-link {
     position: relative;
@@ -317,7 +368,7 @@
     align-items: center;
   }
 
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     .hero-inner-row {
       align-items: flex-start !important;
     }
@@ -341,7 +392,7 @@
     transform: scale(1.18);
   }
 
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     .hero-location-badge-scale {
       transform: scale(1.28);
     }
@@ -349,7 +400,6 @@
 
   .hero-name {
     background: linear-gradient(135deg, var(--color-white) 0%, var(--color-primary-lighter) 100%);
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
@@ -395,11 +445,11 @@
 
   .card-hover:hover {
     transform: translateY(calc(-1 * var(--hover-lift)));
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgb(0 0 0 / 15%);
   }
 
   .dark .card-hover:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
   }
 
   /* Hero buttons - ensure proper sizing */
@@ -417,12 +467,12 @@
 
   /* Button hover - no movement, just highlight */
   .button-hover:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 25%);
     filter: brightness(1.1);
   }
 
   .dark .button-hover:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 60%);
     filter: brightness(1.15);
   }
 
@@ -433,8 +483,10 @@
     cursor: pointer;
     border-radius: 0.75rem;
     overflow: hidden;
+
     --mouse-x: 50%;
     --mouse-y: 50%;
+
     background: color-mix(in srgb, var(--color-primary) 2%, var(--color-bg));
     border: 1px solid transparent;
     min-height: 2rem;
@@ -451,10 +503,7 @@
   .quick-fact-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: radial-gradient(
       circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
       color-mix(in srgb, var(--color-primary) 8%, transparent) 0%,
@@ -474,13 +523,13 @@
   .quick-fact-card:hover {
     transform: translateY(-2px);
     box-shadow: 
-      0 8px 25px rgba(0, 0, 0, 0.1),
+      0 8px 25px rgb(0 0 0 / 10%),
       0 0 0 1px color-mix(in srgb, var(--color-primary) 20%, transparent);
   }
 
   .dark .quick-fact-card:hover {
     box-shadow: 
-      0 8px 25px rgba(0, 0, 0, 0.3),
+      0 8px 25px rgb(0 0 0 / 30%),
       0 0 0 1px color-mix(in srgb, var(--color-primary) 30%, transparent);
   }
 
@@ -492,10 +541,12 @@
       transparent 80%
     );
   }
+
   /* Icon size and zoom - devicon font needs explicit size (img/.fas have intrinsic size) */
   .tech-skill-card .devicon.colored {
     font-size: 3rem; /* match container h-14 / text-5xl */
   }
+
   .tech-skill-card img,
   .tech-skill-card .fas,
   .tech-skill-card .devicon {
@@ -514,6 +565,7 @@
   .tech-skill-card .devicon-linux-plain.colored {
     color: #6b7280 !important; /* gray-500 */
   }
+
   .dark .tech-skill-card .devicon-github-plain.colored,
   .dark .tech-skill-card .devicon-github-original.colored,
   .dark .tech-skill-card .devicon-linux-plain.colored {
@@ -529,6 +581,7 @@
   /* Simple fade-in animation states */
   section[data-animate] {
     opacity: 0;
+
     /* transform: translateY(15px); */
     transition: opacity 0.6s ease;
   }
@@ -556,15 +609,15 @@
 }
 
 .from-blue-600, .from-blue-500 {
-  --tw-gradient-from: var(--color-primary) var(--tw-gradient-from-position) !important;
+  --tw-gradient-from: var(--color-primary) !important;
 }
 
 .to-blue-700, .to-blue-600 {
-  --tw-gradient-to: var(--color-primary-dark) var(--tw-gradient-to-position) !important;
+  --tw-gradient-to: var(--color-primary-dark) !important;
 }
 
 .via-blue-400 {
-  --tw-gradient-stops: var(--tw-gradient-from), var(--color-primary-light) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  --tw-gradient-via: var(--color-primary-light) !important;
 }
 
 /* Generic color classes */
@@ -800,7 +853,6 @@
   max-width: 100%;
   overflow: visible;
   white-space: normal;
-  word-wrap: break-word;
   overflow-wrap: break-word;
   font-family: inherit;
   font-size: inherit;

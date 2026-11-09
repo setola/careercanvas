@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Alex Example placeholder portrait</title>
+  <desc id="desc">A simple abstract silhouette on a pale blue circular background, not a real person's likeness.</desc>
+  <circle cx="160" cy="160" r="160" fill="#e2e8f0"/>
+  <circle cx="160" cy="116" r="56" fill="#64748b"/>
+  <path d="M54 302v-30a106 106 0 0 1 212 0v30Z" fill="#334155"/>
+  <path d="m125 205 35 42 35-42" fill="none" stroke="#e2e8f0" stroke-width="10" stroke-linejoin="round"/>
+</svg>

@@ -7,7 +7,7 @@
     {{ range $files }}
       {{ $filename := .Name }}
       <a href="/{{ $dir }}/{{ $filename }}" data-fslightbox="gallery">
-        <img src="/{{ $dir }}/{{ $filename }}" alt="{{ $filename }}" class="w-full rounded shadow hover:scale-105 transition-transform duration-300" loading="lazy">
+        <img src="/{{ $dir }}/{{ $filename }}" alt="{{ $filename }}" class="w-full rounded-sm shadow-sm hover:scale-105 transition-transform duration-300" loading="lazy">
       </a>
     {{ end }}
   </div>

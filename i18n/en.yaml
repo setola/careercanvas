@@ -1,0 +1,66 @@
+aboutMe:
+  other: About me
+aboutName:
+  other: About
+connectOnLinkedIn:
+  other: Connect on LinkedIn
+quickFacts:
+  other: Quick facts
+more:
+  other: Learn more
+interests:
+  other: Interests
+languages:
+  other: Languages
+helloIm:
+  other: Hello, I'm
+getInTouch:
+  other: Get in touch
+viewCV:
+  other: View resume
+downloadResume:
+  other: Download resume
+keyAchievements:
+  other: Key achievements
+contactFormLabel:
+  other: Contact
+sendMeAMessage:
+  other: Send a message
+contactFormLabelNameLabel:
+  other: Name
+contactFormLabelEmailLabel:
+  other: Email
+contactFormLabelSubjectLabel:
+  other: Subject
+contactFormLabelMessageLabel:
+  other: Message
+contactFormSendBtnLabel:
+  other: Send message
+contactInformation:
+  other: Contact information
+relatedContent:
+  other: Related content
+pageNotFound:
+  other: Page not found
+pageNotFoundSubtitle:
+  other: The page you requested could not be found.
+goHome:
+  other: Go home
+certainlyNotHere:
+  other: Not here
+learnMore:
+  other: Learn more
+viewOnGithub:
+  other: View on GitHub
+iframeIdRequired:
+  other: An iframe ID is required.
+fullscreen:
+  other: Fullscreen
+galleryNotFound:
+  other: "Gallery not found:"
+vimeoPlayerTitle:
+  other: Vimeo video player
+youtubePlayerTitle:
+  other: YouTube video player
+demoImageAlt:
+  other: Example illustration

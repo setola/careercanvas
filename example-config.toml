@@ -1,9 +1,9 @@
 # CareerCanvas theme – example config
 # Copy sections into your site config.toml and replace placeholders.
-# For running the site, see the Portfolio repo README: https://github.com/felipecordero/felipecordero.github.io
+# Install the Tailwind v4 dependencies at your site root; see README.md and exampleSite/.
 
 baseURL = "https://yoursite.com"
-languageCode = "en-us"
+locale = "en-US"
 title = "Your Name"
 theme = "careercanvas"
 defaultContentLanguage = "en"
@@ -12,20 +12,42 @@ defaultContentLanguageInSubdir = false
 [languages]
   [languages.en]
     contentDir = "content/en"
-    languageName = "English"
+    label = "English"
     weight = 1
     [languages.en.params]
+      firstName = "Your"
+      lastName = "Name"
+      resume_url = "/files/your-cv-en.pdf"
       tagline = "First sentence. Second sentence cycles in the same block (wraps to ~2 lines)."
       hero_description = "Short bio for the hero section."
       hero_location = "City, Country"
       collab_tags = ["Tag 1", "Tag 2", "Tag 3"]
   # Add more [languages.xx] blocks for other languages (es, fr, etc.)
 
-[build]
-  writeStats = true
+[build.buildStats]
+  enable = true
+
+[[build.cachebusters]]
+  source = 'assets/notwatching/hugo_stats\.json'
+  target = 'css'
+
+[[module.mounts]]
+  source = 'assets'
+  target = 'assets'
+
+[[module.mounts]]
+  source = 'hugo_stats.json'
+  target = 'assets/notwatching/hugo_stats.json'
+  disableWatch = true
+
+# Allow Hugo to invoke the Tailwind CLI; keep the Node permission model enabled.
+[security.exec]
+  allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^node$', '^tailwindcss$']
 
 [params]
   name = "Your Name"
+  firstName = "Your"
+  lastName = "Name"
   email = "your@email.com"
   profile_image = "/images/your-profile.jpg"
   author = "Your Name"
@@ -37,11 +59,9 @@ defaultContentLanguageInSubdir = false
   github_text = "github.com/yourusername"
   calendly_url = ""
   calendly_height = "700px"
-  copyright = "© 2025 | Your Name"
-  resume_url_en = "/files/your-cv-en.pdf"
-  resume_url_fr = "/files/your-cv-fr.pdf"
+  copyright = "Your Name"
+  resume_url = "/files/your-cv-en.pdf"
   resume_label = "View CV"
-  sectionPagesMenu = "main"
   formspreeendpoint = ""
   pexelsapikey = ""
 

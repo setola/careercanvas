@@ -1,1 +1,7 @@
-static/
+/static/
+node_modules/
+public/
+resources/
+.hugo_build.lock
+.docker/
+hugo_stats.json

@@ -23,7 +23,8 @@
           {{ else }}
                       {{ if hasPrefix .URL "#" }}
             <!-- Section links that should scroll on home page or navigate to home on other pages -->
-            <a href="{{ printf "%s%s" $.Site.Home.RelPermalink .URL }}" class="nav-link section-link text-text-primary dark:text-text-primary" data-section="{{ .URL }}">{{ .Name }}</a>
+            {{ $sectionURL := printf "%s%s" $.Site.Home.RelPermalink .URL }}
+            <a href="{{ $sectionURL }}" class="nav-link section-link text-text-primary dark:text-text-primary" data-section="{{ .URL }}">{{ .Name }}</a>
           {{ else }}
             <!-- Regular page links -->
             <a href="{{ .URL | relLangURL }}" class="nav-link text-text-primary dark:text-text-primary">{{ .Name }}</a>
@@ -69,7 +70,7 @@
                 {{ end }}
                 
                 <a href="{{ $targetURL }}" class="nav-link block px-4 py-2 text-sm text-text-primary dark:text-text-primary {{ if eq .Language.Lang $.Site.Language.Lang }}font-semibold{{ end }}">
-                  <span class="mr-2">{{ $flag }}</span>{{ .Language.LanguageName }}
+                  <span class="mr-2">{{ $flag }}</span>{{ .Language.Label }}
                 </a>
               {{ end }}
             {{ end }}
@@ -97,14 +98,14 @@
           {{ end }}
         </div>
         <!-- Dark Mode Toggle -->
-        <button id="darkModeToggle" class="text-text-primary dark:text-text-primary focus:outline-none">
+        <button id="darkModeToggle" class="text-text-primary dark:text-text-primary focus:outline-hidden">
           <i class="fas fa-toggle-on dark:hidden"></i>
           <i class="fas fa-toggle-off hidden dark:block"></i>
         </button>
       </div>
       <div class="lg:hidden flex items-center space-x-4">
         <!-- Dark Mode Toggle Mobile -->
-        <button id="darkModeToggleMobile" class="text-text-primary dark:text-text-primary focus:outline-none">
+        <button id="darkModeToggleMobile" class="text-text-primary dark:text-text-primary focus:outline-hidden">
           <i class="fas fa-toggle-on dark:hidden"></i>
           <i class="fas fa-toggle-off hidden dark:block"></i>
         </button>
@@ -121,7 +122,8 @@
       {{ range .Site.Menus.main }}
         {{ if hasPrefix .URL "#" }}
           <!-- Section links that should scroll on home page or navigate to home on other pages -->
-          <a href="{{ printf "%s%s" $.Site.Home.RelPermalink .URL }}" class="nav-link section-link block px-3 py-2 rounded-md text-base font-medium text-text-primary dark:text-text-primary" data-section="{{ .URL }}">
+          {{ $sectionURL := printf "%s%s" $.Site.Home.RelPermalink .URL }}
+          <a href="{{ $sectionURL }}" class="nav-link section-link block px-3 py-2 rounded-md text-base font-medium text-text-primary dark:text-text-primary" data-section="{{ .URL }}">
             {{ .Name }}
           </a>
         {{ else }}
@@ -164,7 +166,7 @@
                 {{ end }}
               {{ end }}
               
-              <a href="{{ $targetURL }}" class="px-2 py-1 text-xl {{ if eq .Language.Lang $.Site.Language.Lang }}opacity-100 font-semibold{{ else }}opacity-70 hover:opacity-100{{ end }}" aria-label="Switch to {{ .Language.LanguageName }}{{ if $hasTranslation }} (has translation){{ else }} (go to home){{ end }}">
+              <a href="{{ $targetURL }}" class="px-2 py-1 text-xl {{ if eq .Language.Lang $.Site.Language.Lang }}opacity-100 font-semibold{{ else }}opacity-70 hover:opacity-100{{ end }}" aria-label="Switch to {{ .Language.Label }}{{ if $hasTranslation }} (has translation){{ else }} (go to home){{ end }}">
                 <span aria-hidden="true">{{ $flag }}</span>
               </a>
             {{ end }}

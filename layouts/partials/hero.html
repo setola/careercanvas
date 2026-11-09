@@ -18,8 +18,8 @@
             <!-- Anchored to the ring so it stays aligned when lg size is set in CSS -->
             <div class="absolute -bottom-4 -right-4 z-10" data-animation="location-badge">
               <div class="hero-location-badge-scale">
-                <div class="flex items-center bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-full shadow-xl border border-white/20 min-w-fit whitespace-nowrap">
-                  <i class="fas fa-map-marker-alt mr-2 text-primary-light flex-shrink-0"></i>
+                <div class="flex items-center bg-black/80 backdrop-blur-xs text-white px-4 py-2 rounded-full shadow-xl border border-white/20 min-w-fit whitespace-nowrap">
+                  <i class="fas fa-map-marker-alt mr-2 text-primary-light shrink-0"></i>
                   <span class="font-semibold text-sm">{{ .Site.Params.hero_location }}</span>
                 </div>
               </div>
@@ -34,7 +34,7 @@
           <span class="hero-text-accent font-medium text-lg block">{{ i18n "helloIm" }}</span>
         </div>
         <!-- Name -->
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-heading leading-tight hero-name hero-text-element" data-animation="name">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-heading leading-tight md:leading-none hero-name hero-text-element" data-animation="name">
           {{ .Site.Params.firstName }} {{ .Site.Params.lastName }}
         </h1>
         <!-- Tagline: one block; each cycling phrase wraps (up to ~2 lines); split phrases in JS on ". " -->
@@ -44,7 +44,7 @@
           <span class="typewriter w-full max-w-full text-center lg:text-left" data-original-text="{{ $tagline }}">{{ $first }}.</span>
         </h2>
         <!-- Description -->
-        <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto lg:mx-0 hero-text-muted leading-relaxed hero-text-element px-4 py-3 rounded-lg" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(8px);" data-animation="description">
+        <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto lg:mx-0 hero-text-muted leading-relaxed md:leading-7 hero-text-element px-4 py-3 rounded-lg" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(8px);" data-animation="description">
           {{ .Site.Params.hero_description }}
         </p>
 

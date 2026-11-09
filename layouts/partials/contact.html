@@ -103,7 +103,7 @@
   </div>
 
   {{ if .Site.Params.calendly_url }}
-  <div id="calendly-modal" class="fixed inset-0 bg-bg bg-opacity-50 hidden items-center justify-center px-4 py-8" aria-modal="true" aria-labelledby="calendly-modal-title">
+  <div id="calendly-modal" class="fixed inset-0 bg-surface/50 hidden items-center justify-center px-4 py-8" aria-modal="true" aria-labelledby="calendly-modal-title">
     <div class="bg-bg dark:bg-bg rounded-xl shadow-2xl w-full max-w-5xl lg:max-w-6xl max-h-[85vh] lg:max-h-[90vh] overflow-y-auto sidebar-scroll">
       <div class="p-8">
         <div class="flex justify-between items-center mb-6">
@@ -198,7 +198,7 @@
     function showToast(message) {
       const toast = document.createElement('div');
       toast.textContent = message;
-      toast.className = 'fixed bottom-6 right-6 bg-second dark:bg-second-light text-white px-4 py-2 rounded shadow-lg';
+      toast.className = 'fixed bottom-6 right-6 bg-second dark:bg-second-light text-white px-4 py-2 rounded-sm shadow-lg';
       document.body.appendChild(toast);
   
       setTimeout(() => {

@@ -1,0 +1,25 @@
+name: Validate standalone theme
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Validate with the official Hugo image
+        working-directory: exampleSite
+        run: |
+          export LOCAL_UID="$(id -u)"
+          export LOCAL_GID="$(id -g)"
+          mkdir -p .docker/node_modules
+          docker compose run --rm npm ci
+          docker compose run --rm npm test
+          docker compose run --rm --entrypoint hugo npm --environment development --destination .docker/development --panicOnWarning --printI18nWarnings
+          docker compose run --rm npm audit
